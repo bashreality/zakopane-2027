@@ -209,12 +209,21 @@ h2, h3, h4 { text-wrap: balance; }
 .verdict h3 { margin: 0 0 4px; font-size: 22px; }
 .verdict > p { margin: 0; color: var(--ink-2); }
 .vl { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 6px; }
-.vl li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 10px 12px; background: var(--snow); }
+.vl li { display: block; }
+.vbtn { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 10px; align-items: center; width: 100%; padding: 10px 12px; border: 0; border-left: 4px solid transparent; background: var(--snow); text-align: left; }
+.vbtn:hover { background: var(--ice-soft); border-left-color: var(--ink); }
+.vbtn .arr { font-weight: 800; color: var(--ink-2); }
+.today { margin: 12px 0 0; padding: 10px 12px; border-left: 4px solid var(--ink); font-size: 15px; }
+.today.t-best { background: var(--ink); color: #fff; border-left-color: var(--pink); }
+.today.t-ok { background: var(--ice-soft); color: #064B6E; }
+.today.t-partial { background: var(--gold-soft); color: #5A4100; border-left-color: var(--gold); }
+.today.t-no { background: var(--red-soft); color: #6B1418; border-left-color: var(--red); }
 .vl b { display: block; }
 .vl small { display: block; color: var(--ink-2); font-size: 14px; }
 .tag { font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 4px 8px; white-space: nowrap; }
 .t-best { background: var(--ink); color: #fff; } .t-ok { background: var(--ice-soft); color: #064B6E; } .t-partial { background: var(--gold-soft); color: #5A4100; } .t-no { background: #E9ECF6; color: #6A6F8F; }
 .vl li.v-no b { text-decoration: line-through; color: #6A6F8F; }
+.vhint { margin: 10px 0 0; font-size: 14px; color: var(--ink-2); }
 .lnks { display: flex; flex-wrap: wrap; gap: 8px; }
 
 /* PLECAK + SOS */
@@ -758,16 +767,19 @@ TRIP.store = {
 
   /* ---------- ARKUSZ TRASY ---------- */
   var wrap = $("#sheetwrap"), sheet = $("#sheet"), lastF = null;
-  function openRoute(id) {
+  var TAGN = { best: "Polecana", ok: "Możliwa", partial: "Częściowo", no: "Nie dziś" };
+  function openRoute(id, fromCond) {
     var r = T.route(id); if (!r) return; lastF = document.activeElement;
+    var today = "";
+    if (fromCond) { var a = T.assess(cond.level, !!cond.wind, !!cond.clear), st = a.st[id]; today = '<p class="today t-' + st.s + '">Przy ustawionych warunkach (stopień ' + (cond.level >= 4 ? "4–5" : cond.level) + ", wiatr " + (cond.wind ? "silny" : "słaby") + ", " + (cond.clear ? "przejrzyście" : "chmury") + "): <b>" + TAGN[st.s] + "</b> — " + st.why + ".</p>"; }
     sheet.innerHTML = '<div class="sh-top"><span class="badge' + (r.star ? " star" : "") + '"><span class="px" data-px="Trasa ' + r.rank + '"></span></span><button type="button" class="x" id="sh-x" aria-label="Zamknij">×</button></div>' +
-      '<h2 id="sh-title">' + r.name + '</h2><div class="eyebrow">' + r.tag + "</div>" + factsHTML(routeFacts(r)) +
+      '<h2 id="sh-title">' + r.name + '</h2><div class="eyebrow">' + r.tag + "</div>" + today + factsHTML(routeFacts(r)) +
       '<p class="moment">' + r.moment + '</p><p class="why">' + r.why + "</p><p class=\"why\"><b>Dojazd:</b> " + r.access + '</p><h3 style="margin:20px 0 0">Krok po kroku</h3><ol class="tl" id="sheet-tl"></ol>';
     renderSteps($("#sheet-tl"), "r-" + r.id, r.steps);
     PX.apply(sheet); wrap.hidden = false; sheet.scrollTop = 0; $("#sh-x").focus();
   }
   function closeRoute() { wrap.hidden = true; if (lastF) lastF.focus(); }
-  document.addEventListener("click", function (e) { var o = e.target.closest("[data-open]"); if (o) openRoute(o.dataset.open); if (e.target.closest("#sh-x") || e.target === wrap) closeRoute(); });
+  document.addEventListener("click", function (e) { var o = e.target.closest("[data-open]"); if (o) openRoute(o.dataset.open, !!o.dataset.cond); if (e.target.closest("#sh-x") || e.target === wrap) closeRoute(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !wrap.hidden) closeRoute(); });
 
   /* ---------- WARUNKI ---------- */
@@ -781,7 +793,7 @@ TRIP.store = {
   function verdict() {
     var a = T.assess(cond.level, !!cond.wind, !!cond.clear), order = { best: 0, ok: 1, partial: 2, no: 3 }, tag = { best: "Polecana", ok: "Możliwa", partial: "Częściowo", no: "Nie dziś" };
     var rs = T.routes.slice().sort(function (x, y) { return order[a.st[x.id].s] - order[a.st[y.id].s] || x.rank - y.rank; });
-    $("#verdict").innerHTML = "<h3>" + a.h + "</h3><p>" + a.n + '</p><ul class="vl">' + rs.map(function (r) { var s = a.st[r.id]; return '<li class="v-' + s.s + '"><span><b>' + r.rank + ". " + r.name + "</b><small>" + s.why + '</small></span><span class="tag t-' + s.s + '">' + tag[s.s] + "</span></li>"; }).join("") + "</ul>";
+    $("#verdict").innerHTML = "<h3>" + a.h + "</h3><p>" + a.n + '</p><p class="vhint">Dotknij trasy, żeby zobaczyć jej dokładny opis krok po kroku.</p><ul class="vl">' + rs.map(function (r) { var s = a.st[r.id]; return '<li class="v-' + s.s + '"><button type="button" class="vbtn" data-open="' + r.id + '" data-cond="1"><span><b>' + r.rank + ". " + r.name + "</b><small>" + s.why + '</small></span><span class="tag t-' + s.s + '">' + tag[s.s] + '</span><span class="arr" aria-hidden="true">→</span></button></li>'; }).join("") + "</ul>";
   }
   seg("#lv", "level"); seg("#wind", "wind"); seg("#sky", "clear"); verdict();
   $("#links").innerHTML = T.links.map(function (l) { return '<a class="btn" href="' + l[1] + '" target="_blank" rel="noopener">' + l[0] + " ↗</a>"; }).join("");
