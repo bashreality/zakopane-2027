@@ -3,278 +3,322 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0B0B2A">
+<meta name="theme-color" content="#13294A">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Zakopane 27">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Crect width='8' height='8' fill='%2317123F'/%3E%3Cpath d='M0 7h8v1H0zM1 6h6v1H1zM2 4h4v2H2zM3 2h2v2H3z' fill='%237DE2FF'/%3E%3Cpath d='M3 2h2v1H3z' fill='%23F5F8FF'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%231D3D63'/%3E%3Cstop offset='1' stop-color='%23F2C7BB'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Cpath d='M0 50 L20 40 L28 42 L34 22 L38 20 L44 30 L64 40 V64 H0Z' fill='%23F4F8FC'/%3E%3C/svg%3E">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-180.png">
 <title>Zakopane Zima 2027</title>
 <style>
-/* Układ: pikselowa nocna scena na górze, pod nią jasna „śnieżna” strona do czytania. Pasek dni przyklejony u góry. Widok dnia: na Macu opis dnia z lewej (przyklejony), plan godzina po godzinie z prawej; na telefonie jedno pod drugim, menu na dole. */
+/* Układ: hero z ilustracją Tatr o świcie (Giewont z krzyżem) i padającym śniegiem; ciemny szklany pasek dni; pod nim jasna śnieżna strona — na Macu opis dnia z lewej, plan godzina po godzinie z prawej; na telefonie jedno pod drugim, menu na dole. */
 :root {
-  --night: #0B0B2A;
-  --night-2: #17123F;
-  --snow: #EDF2FF;
-  --paper: #FFFFFF;
-  --ink: #16143A;
-  --ink-2: #464B70;
-  --line: #CDD6F2;
-  --pink: #D42C78;
-  --pink-soft: #FFE4F0;
-  --gold: #E8A800;
-  --gold-soft: #FFF3C7;
-  --ice: #0A7FBA;
-  --ice-soft: #DDF2FF;
-  --red: #C0262D;
-  --red-soft: #FFE7E7;
+  --bg: #F3F7FB;
+  --card: #FFFFFF;
+  --ink: #10243A;
+  --ink-2: #526579;
+  --line: #DCE5EE;
+  --soft: #EBF2F8;
+  --glacier: #2A6FA8;
+  --glacier-soft: #E1EEF9;
+  --alpen: #D4456B;
+  --alpen-soft: #FCE7ED;
+  --amber: #E1A11C;
+  --amber-bg: #FFF3D9;
+  --amber-ink: #6A4800;
+  --red: #C3343B;
+  --red-soft: #FDEBEB;
+  --red-ink: #7A1F24;
+  --ok: #1F8A5B;
+  --bar: rgba(14, 32, 54, .86);
+  --shadow: 0 1px 2px rgba(16, 36, 58, .06), 0 10px 30px rgba(16, 36, 58, .07);
+  --sky1: #1D3D63; --sky2: #5F8DBB; --sky3: #F2C7BB; --orb: rgba(255, 214, 196, .9);
+  --m-far: #C9D9EA; --m-far-hl: #F3DCDD; --m-mid: #8DAECD; --m-snow: #F4F8FC; --m-near: #5A80A8; --m-forest: #26445F;
+  --f-display: ui-serif, "New York", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --f: system-ui, -apple-system, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
-  --f-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  --pxu: 3px;
   color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0B1726; --card: #122337; --ink: #E7EFF7; --ink-2: #9DB0C3; --line: #22384F; --soft: #172B42; --glacier: #74B6EE; --glacier-soft: #16314D;
+    --alpen: #FF7D9D; --alpen-soft: #3A1F2D; --amber: #F2B53A; --amber-bg: #3A2D10; --amber-ink: #FFD889; --red: #FF7A80; --red-soft: #3C1B20; --red-ink: #FFC0C3; --ok: #4ED39A;
+    --bar: rgba(6, 14, 26, .86); --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+    --sky1: #040A15; --sky2: #10264A; --sky3: #35577F; --orb: rgba(230, 240, 255, .95);
+    --m-far: #284262; --m-far-hl: #34537A; --m-mid: #1F3858; --m-snow: #9FB6CF; --m-near: #162C47; --m-forest: #0D1C30;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0B1726; --card: #122337; --ink: #E7EFF7; --ink-2: #9DB0C3; --line: #22384F; --soft: #172B42; --glacier: #74B6EE; --glacier-soft: #16314D;
+  --alpen: #FF7D9D; --alpen-soft: #3A1F2D; --amber: #F2B53A; --amber-bg: #3A2D10; --amber-ink: #FFD889; --red: #FF7A80; --red-soft: #3C1B20; --red-ink: #FFC0C3; --ok: #4ED39A;
+  --bar: rgba(6, 14, 26, .86); --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+  --sky1: #040A15; --sky2: #10264A; --sky3: #35577F; --orb: rgba(230, 240, 255, .95);
+  --m-far: #284262; --m-far-hl: #34537A; --m-mid: #1F3858; --m-snow: #9FB6CF; --m-near: #162C47; --m-forest: #0D1C30;
+  color-scheme: dark;
 }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
-html { background: var(--snow); -webkit-text-size-adjust: 100%; scroll-padding-top: 84px; }
-body { margin: 0; background: var(--snow); color: var(--ink); font: 17px/1.6 var(--f); -webkit-font-smoothing: antialiased; padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px)); }
+html { background: var(--bg); -webkit-text-size-adjust: 100%; scroll-padding-top: 84px; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 var(--f); -webkit-font-smoothing: antialiased; padding-bottom: calc(78px + env(safe-area-inset-bottom, 0px)); }
 @media (min-width: 1240px) { body { padding-bottom: 0; } }
 button { font: inherit; color: inherit; cursor: pointer; }
-a { color: var(--ice); }
-h2, h3, h4 { text-wrap: balance; }
-:focus-visible { outline: 3px solid var(--pink); outline-offset: 2px; }
-.px-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.px { display: flex; flex-wrap: wrap; gap: calc(var(--pxu) * 2) calc(var(--pxu) * 4); align-items: flex-end; margin: 0; }
-.pxw { display: block; }
-.spr { display: block; width: 100%; height: 100%; }
+a { color: var(--glacier); }
+h1, h2, h3, h4 { text-wrap: balance; }
+:focus-visible { outline: 3px solid var(--glacier); outline-offset: 2px; }
+.ic { width: 20px; height: 20px; display: block; flex: 0 0 auto; }
 
-/* SCENA */
-.scene { position: relative; height: clamp(300px, 50vh, 500px); overflow: hidden; background: var(--night); }
-#scene { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; image-rendering: crisp-edges; display: block; }
-.title { position: absolute; z-index: 1; left: 0; right: 0; top: calc(env(safe-area-inset-top, 0px) + clamp(20px, 6vh, 56px)); display: grid; justify-items: center; gap: 12px; padding: 0 16px; text-align: center; }
-.title h1 { --pxu: clamp(5px, calc((100vw - 40px) / 50), 12px); color: #F5F8FF; filter: drop-shadow(var(--pxu) var(--pxu) 0 #FF4FA3); }
-.title .sub { --pxu: clamp(2px, .5vw, 3px); color: #FFD23F; filter: drop-shadow(var(--pxu) var(--pxu) 0 var(--night)); }
-.start { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; background: #FFD23F; color: var(--night); font-weight: 800; text-decoration: none; letter-spacing: .04em; box-shadow: 4px 4px 0 var(--night); animation: blink 1.2s steps(2, start) infinite; }
-.start:hover, .start:focus-visible { animation: none; }
-@keyframes blink { to { visibility: hidden; } }
+/* HERO */
+.hero { position: relative; overflow: hidden; height: clamp(380px, 60vh, 580px); background: linear-gradient(180deg, var(--sky1) 0%, var(--sky2) 58%, var(--sky3) 100%); color: #fff; }
+.hero::before { content: ""; position: absolute; width: 220px; height: 220px; right: 14%; top: 34%; border-radius: 50%; background: radial-gradient(circle, var(--orb) 0 18%, transparent 62%); opacity: .85; }
+.scape { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 74%; display: block; }
+.scape g { will-change: transform; }
+#snow { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.hero-in { position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; padding: calc(env(safe-area-inset-top, 0px) + clamp(26px, 6vh, 64px)) 20px 0; }
+.hero .eyebrow { font-size: 13px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(255, 255, 255, .82); }
+.hero h1 { margin: 6px 0 0; font: 600 clamp(58px, 11vw, 124px)/.95 var(--f-display); letter-spacing: -.02em; text-shadow: 0 2px 24px rgba(10, 24, 44, .35); }
+.hero .lead { margin: 12px 0 0; max-width: 30ch; font-size: clamp(17px, 2vw, 20px); line-height: 1.45; color: rgba(255, 255, 255, .95); text-shadow: 0 1px 2px rgba(10, 24, 44, .55), 0 2px 18px rgba(10, 24, 44, .5); }
+.stats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.stat { padding: 8px 12px; border-radius: 999px; background: rgba(10, 26, 46, .42); border: 1px solid rgba(255, 255, 255, .26); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); font-size: 14px; color: #fff; }
+.stat b { font-variant-numeric: tabular-nums; }
+.cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; padding: 12px 20px; border-radius: 999px; background: #fff; color: #10243A; font-weight: 700; text-decoration: none; box-shadow: 0 8px 24px rgba(10, 24, 44, .25); }
+.cta:hover { transform: translateY(-1px); }
 
 /* PASEK DNI */
-.daybar { position: sticky; top: 0; z-index: 20; background: var(--night); padding-top: env(safe-area-inset-top, 0px); box-shadow: 0 4px 0 rgba(11, 11, 42, .15); }
+.daybar { position: sticky; top: 0; z-index: 20; background: var(--bar); backdrop-filter: blur(16px) saturate(1.3); -webkit-backdrop-filter: blur(16px) saturate(1.3); padding-top: env(safe-area-inset-top, 0px); }
 .daybar-in { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; gap: 12px; padding: 10px 16px; }
-.logo { --pxu: 2px; color: #7DE2FF; flex: 0 0 auto; text-decoration: none; }
+.brand { flex: 0 0 auto; font: 600 18px/1 var(--f-display); color: #fff; text-decoration: none; letter-spacing: -.01em; }
 .days { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; flex: 1; scroll-snap-type: x proximity; }
 .days::-webkit-scrollbar { display: none; }
-.dchip { flex: 0 0 auto; display: flex; align-items: center; gap: 8px; padding: 6px 12px 6px 6px; border: 0; background: var(--night-2); color: #DCE2FF; font-size: 15px; font-weight: 600; scroll-snap-align: start; }
-.dchip .n { display: grid; place-items: center; width: 30px; height: 30px; background: #2A2370; --pxu: 2px; color: #F5F8FF; }
-.dchip.star .n { background: #FFD23F; color: var(--night); }
-.dchip[aria-pressed="true"] { background: #F5F8FF; color: var(--night); }
-.dchip[aria-pressed="true"] .n { background: #FF4FA3; color: #fff; }
+.dchip { position: relative; flex: 0 0 auto; display: flex; align-items: center; gap: 8px; padding: 5px 14px 5px 5px; border: 0; border-radius: 999px; background: rgba(255, 255, 255, .08); color: #DCE6F2; font-size: 15px; font-weight: 600; scroll-snap-align: start; }
+.dchip .n { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: rgba(255, 255, 255, .12); font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.dchip.star::after { content: ""; position: absolute; top: 4px; left: 26px; width: 8px; height: 8px; border-radius: 50%; background: #FF8FAB; box-shadow: 0 0 0 2px rgba(14, 32, 54, .9); }
+.dchip[aria-pressed="true"] { background: #fff; color: #10243A; }
+.dchip[aria-pressed="true"] .n { background: #10243A; color: #fff; }
 .topnav { display: none; gap: 2px; flex: 0 0 auto; }
-.topnav a { padding: 8px 10px; color: #AEB5E0; text-decoration: none; font-size: 14px; font-weight: 600; }
-.topnav a:hover { color: #fff; }
+.topnav a { padding: 8px 12px; border-radius: 999px; color: #B9C7D8; text-decoration: none; font-size: 14px; font-weight: 600; }
+.topnav a:hover { color: #fff; background: rgba(255, 255, 255, .08); }
 @media (min-width: 1240px) { .topnav { display: flex; } }
 
 /* MENU NA TELEFONIE */
-.tabbar { position: fixed; z-index: 30; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(5, 1fr); padding: 6px 6px calc(6px + env(safe-area-inset-bottom, 0px)); background: var(--night); }
-.tabbar a { display: grid; justify-items: center; gap: 3px; padding: 6px 0; text-decoration: none; color: #AEB5E0; font-size: 11px; font-weight: 700; }
-.tabbar .ic { width: 22px; height: 22px; display: block; }
-.tabbar a.on { color: #fff; background: var(--night-2); }
+.tabbar { position: fixed; z-index: 30; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(5, 1fr); padding: 6px 8px calc(6px + env(safe-area-inset-bottom, 0px)); background: var(--bar); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+.tabbar a { display: grid; justify-items: center; gap: 3px; padding: 6px 0; border-radius: 14px; text-decoration: none; color: #9FB2C7; font-size: 11px; font-weight: 600; }
+.tabbar a.on { color: #fff; background: rgba(255, 255, 255, .1); }
 @media (min-width: 1240px) { .tabbar { display: none; } }
 
 /* WSPÓLNE */
-.sec { max-width: 1180px; margin: 0 auto; padding-block: 40px 8px; padding-inline: 16px; }
+.sec { max-width: 1180px; margin: 0 auto; padding-block: 44px 8px; padding-inline: 16px; }
 .sec-h { margin-bottom: 18px; }
-.sec-h h2 { margin: 0; font-size: clamp(28px, 4vw, 38px); line-height: 1.1; letter-spacing: -.02em; }
-.sec-h p { margin: 6px 0 0; color: var(--ink-2); max-width: 60ch; }
-.card { background: var(--paper); border: 2px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); min-width: 0; }
-.btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border: 2px solid var(--ink); background: var(--paper); box-shadow: 3px 3px 0 var(--ink); font-weight: 700; font-size: 15px; text-decoration: none; color: var(--ink); }
-.btn:hover { background: var(--ice-soft); }
-.btn:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
-.btn.primary { background: var(--ink); color: #fff; }
-.btn.primary:hover { background: var(--pink); }
-.eyebrow { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+.sec-h h2 { margin: 0; font: 600 clamp(30px, 4.4vw, 42px)/1.08 var(--f-display); letter-spacing: -.015em; }
+.sec-h p { margin: 8px 0 0; color: var(--ink-2); max-width: 60ch; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow); min-width: 0; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--ink); font-weight: 650; font-size: 15px; text-decoration: none; }
+.btn:hover { border-color: var(--glacier); color: var(--glacier); }
+.btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.btn.primary:hover { background: var(--glacier); border-color: var(--glacier); color: #fff; }
+.label { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
 
 /* WIDOK DNIA */
-.day-wrap { display: grid; gap: 20px; }
+.day-wrap { display: grid; gap: 18px; }
 @media (min-width: 900px) { .day-wrap { grid-template-columns: minmax(0, 380px) minmax(0, 1fr); align-items: start; } .day-side { position: sticky; top: 76px; max-height: calc(100vh - 92px); overflow-y: auto; overscroll-behavior: contain; } }
-.day-side { padding: 20px; }
-.badge { display: inline-flex; padding: 6px 8px; background: var(--ink); color: #fff; --pxu: 3px; }
-.badge.star { background: var(--pink); }
-.day-side h2 { margin: 14px 0 6px; font-size: clamp(26px, 3.2vw, 34px); line-height: 1.12; letter-spacing: -.02em; }
+.day-side { padding: 22px; }
+.dnum { display: inline-flex; align-items: baseline; gap: 8px; color: var(--glacier); }
+.dnum b { font: 600 46px/1 var(--f-display); }
+.dnum span { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.dnum.star { color: var(--alpen); }
+.day-side h2 { margin: 10px 0 6px; font: 600 clamp(26px, 3vw, 32px)/1.12 var(--f-display); letter-spacing: -.01em; }
 .day-side .sum { margin: 0; color: var(--ink-2); }
-.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin: 18px 0 0; background: var(--line); border: 1px solid var(--line); }
-.facts div { background: var(--paper); padding: 10px 12px; min-width: 0; }
-.facts dt { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 18px 0 0; }
+.facts div { background: var(--soft); border-radius: 14px; padding: 10px 12px; min-width: 0; }
+.facts dt { font-size: 11.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-2); }
 .facts dd { margin: 2px 0 0; font-weight: 600; font-size: 15px; line-height: 1.35; }
 .facts .wide { grid-column: 1 / -1; }
-.facts .turn { background: var(--gold-soft); }
+.facts .turn { background: var(--amber-bg); color: var(--amber-ink); }
+.facts .turn dt { color: var(--amber-ink); }
 .side-acts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-.planb { margin-top: 18px; display: grid; gap: 10px; }
+.planb { margin-top: 20px; display: grid; gap: 10px; }
 .planb h3 { margin: 0; font-size: 16px; }
-.planb details { border: 2px solid var(--line); background: var(--snow); }
-.planb summary { cursor: pointer; padding: 10px 12px; font-weight: 700; list-style: none; display: flex; justify-content: space-between; gap: 10px; }
+.planb details { border: 1px solid var(--line); border-radius: 16px; background: var(--bg); overflow: hidden; }
+.planb summary { cursor: pointer; padding: 12px 14px; font-weight: 650; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
 .planb summary::-webkit-details-marker { display: none; }
-.planb summary::after { content: "▼"; font-size: 12px; color: var(--ink-2); }
-.planb details[open] summary::after { content: "▲"; }
+.planb summary::after { content: "+"; font-size: 20px; line-height: 1; color: var(--ink-2); }
+.planb details[open] summary::after { content: "–"; }
 .planb summary small { display: block; font-weight: 500; color: var(--ink-2); font-size: 14px; }
-.planb .inner { padding: 0 12px 12px; }
-.day-main { padding: 20px; }
-.day-main h3 { margin: 0; font-size: 22px; }
-.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 8px 0 4px; font-size: 14px; color: var(--ink-2); }
+.planb .inner { padding: 0 14px 14px; }
+.planb .st { grid-template-columns: 36px minmax(0, 1fr); }
+.planb .st::before { left: 17px; }
+.planb .st .tm { display: none; }
+.planb .tm-m { display: inline-flex; }
+.day-main { padding: 22px; }
+.day-main h3 { margin: 0; font: 600 24px/1.2 var(--f-display); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 10px 0 4px; font-size: 14px; color: var(--ink-2); }
 .legend span { display: inline-flex; align-items: center; gap: 6px; }
-.legend i { width: 14px; height: 14px; border: 2px solid var(--ink); display: inline-block; }
-.legend .l-dec i { background: var(--gold); }
-.legend .l-star i { background: var(--pink); }
+.legend i { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+.legend .l-dec i { background: var(--amber); }
+.legend .l-star i { background: var(--alpen); }
 .legend .l-no i { background: var(--red); }
-.hint { font-size: 14px; color: var(--ink-2); margin: 0 0 8px; }
+.hint { font-size: 14px; color: var(--ink-2); margin: 0 0 6px; }
 
 /* PLAN GODZINA PO GODZINIE */
-.tl { list-style: none; margin: 14px 0 0; padding: 0; }
-.st { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; position: relative; padding-bottom: 18px; }
-.st::before { content: ""; position: absolute; left: 19px; top: 40px; bottom: 0; width: 2px; background: repeating-linear-gradient(var(--line) 0 6px, transparent 6px 10px); }
+.tl { list-style: none; margin: 16px 0 0; padding: 0; }
+.st { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 14px; position: relative; padding-bottom: 20px; }
+.st::before { content: ""; position: absolute; left: 17px; top: 38px; bottom: 2px; width: 2px; border-radius: 2px; background: var(--line); }
 .st:last-child::before { display: none; }
 .st .tm { display: none; }
-.mk { width: 40px; height: 40px; padding: 6px; border: 2px solid var(--ink); background: var(--paper); position: relative; z-index: 1; }
-.mk:hover { background: var(--ice-soft); }
-.k-dec .mk { background: var(--gold); }
-.k-star .mk { background: var(--pink-soft); border-color: var(--pink); }
-.k-start .mk, .k-end .mk { background: var(--ice-soft); }
-.st.is-done .mk { background: var(--ink); }
-.st.is-done .mk .spr { opacity: .35; }
-.st.is-done .mk::after { content: "✓"; position: absolute; inset: 0; display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 20px; }
-.st.is-done .bd { opacity: .55; }
-.bd { min-width: 0; padding-top: 2px; }
-.tm-m { display: inline-block; font-weight: 800; font-size: 15px; font-variant-numeric: tabular-nums; background: var(--ink); color: #fff; padding: 2px 8px; margin-bottom: 4px; }
-.k-dec .tm-m { background: var(--gold); color: var(--ink); }
-.k-star .tm-m { background: var(--pink); }
-.bd h4 { margin: 0; font-size: 18px; line-height: 1.3; }
-.bd .km { margin-left: 6px; font-size: 13px; font-weight: 700; color: var(--ink-2); white-space: nowrap; }
+.mk { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--line); background: var(--soft); color: var(--glacier); position: relative; z-index: 1; padding: 0; }
+.mk .ic { width: 18px; height: 18px; }
+.mk:hover { border-color: var(--glacier); }
+.k-dec .mk { background: var(--amber-bg); border-color: var(--amber); color: var(--amber-ink); }
+.k-star .mk { background: var(--alpen-soft); border-color: var(--alpen); color: var(--alpen); }
+.k-start .mk, .k-end .mk { background: var(--glacier); border-color: var(--glacier); color: #fff; }
+.st.is-done .mk { background: var(--ok); border-color: var(--ok); color: #fff; }
+.st.is-done .bd { opacity: .5; }
+.bd { min-width: 0; padding-top: 4px; }
+.tm-m { display: inline-flex; font-weight: 700; font-size: 14px; font-variant-numeric: tabular-nums; color: var(--glacier); margin-bottom: 2px; }
+.k-dec .tm-m { color: var(--amber-ink); }
+.k-star .tm-m { color: var(--alpen); }
+.bd h4 { margin: 0; font-size: 17.5px; line-height: 1.3; font-weight: 650; }
+.bd .km { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; background: var(--soft); font-size: 12.5px; font-weight: 600; color: var(--ink-2); vertical-align: 2px; white-space: nowrap; }
 .bd p { margin: 4px 0 0; color: var(--ink-2); font-size: 16px; }
-.go { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin-top: 8px; padding: 8px 10px; background: var(--snow); border-left: 4px solid var(--ink); }
-.go .lbl { font-weight: 800; font-size: 14px; text-transform: uppercase; letter-spacing: .06em; }
+.go { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin-top: 10px; padding: 9px 12px; border-radius: 12px; background: var(--soft); }
+.go .lbl { font-weight: 700; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
 .go b { font-size: 16px; }
 .go .arr { color: var(--ink-2); }
-.tr { display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px 2px 4px; background: var(--paper); border: 2px solid var(--c); font-size: 14px; font-weight: 700; color: var(--ink); }
-.tr i { width: 14px; height: 14px; background: var(--c); }
-.tr-r { --c: #D7263D; } .tr-b { --c: #1F6FE5; } .tr-g { --c: #1A9B57; } .tr-y { --c: #E9B800; } .tr-k { --c: #16152E; }
-.bd p.no { margin-top: 8px; padding: 8px 10px; background: var(--red-soft); color: #6B1418; font-size: 15px; border-left: 4px solid var(--red); }
-.bd p.dec { margin-top: 8px; padding: 8px 10px; background: var(--gold-soft); color: #5A4100; font-size: 15px; border-left: 4px solid var(--gold); }
-.bd p.no b, .bd p.dec b { color: inherit; }
+.blaze { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 650; color: var(--ink); }
+.blaze i { width: 22px; height: 14px; border-radius: 2px; border: 1px solid rgba(16, 36, 58, .25); background: linear-gradient(#fff 0 33%, var(--c) 33% 67%, #fff 67%); box-shadow: 0 1px 2px rgba(16, 36, 58, .15); }
+.b-r { --c: #D7263D; } .b-b { --c: #1F6FE5; } .b-g { --c: #1A9B57; } .b-y { --c: #EBC000; } .b-k { --c: #121212; }
+.bd p.no, .bd p.dec { margin-top: 10px; padding: 9px 12px; border-radius: 12px; font-size: 15px; }
+.bd p.no { background: var(--red-soft); color: var(--red-ink); }
+.bd p.dec { background: var(--amber-bg); color: var(--amber-ink); }
 @media (min-width: 700px) {
-  .st { grid-template-columns: 104px 40px minmax(0, 1fr); }
-  .st::before { left: calc(104px + 12px + 19px); }
-  .st .tm { display: block; padding-top: 8px; text-align: right; font-weight: 800; font-size: 17px; font-variant-numeric: tabular-nums; line-height: 1.25; }
-  .k-dec .tm { color: #8A6400; }
-  .k-star .tm { color: var(--pink); }
+  .st { grid-template-columns: 96px 36px minmax(0, 1fr); }
+  .st::before { left: calc(96px + 14px + 17px); }
+  .st .tm { display: block; padding-top: 7px; text-align: right; font-weight: 700; font-size: 16px; font-variant-numeric: tabular-nums; line-height: 1.25; color: var(--ink); }
+  .k-dec .tm { color: var(--amber-ink); }
+  .k-star .tm { color: var(--alpen); }
   .tm-m { display: none; }
-  .bd { padding-top: 7px; }
+  .bd { padding-top: 6px; }
 }
-.planb .st { grid-template-columns: 40px minmax(0, 1fr); }
-.planb .st::before { left: 19px; }
-.planb .st .tm { display: none; }
-.planb .tm-m { display: inline-block; }
-.planb .bd { padding-top: 2px; }
-.pager { display: flex; justify-content: space-between; gap: 10px; margin-top: 8px; padding-top: 16px; border-top: 2px dashed var(--line); }
+.pager { display: flex; justify-content: space-between; gap: 10px; margin-top: 10px; padding-top: 16px; border-top: 1px solid var(--line); }
 
 /* TYDZIEŃ */
 .week { display: grid; gap: 10px; }
-.wrow { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 12px 14px; text-align: left; }
-.wrow:hover { background: var(--ice-soft); }
-.wrow .badge { --pxu: 3px; }
+.wrow { display: grid; grid-template-columns: 52px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 14px 16px; text-align: left; transition: transform .2s, box-shadow .2s; }
+.wrow:hover { transform: translateY(-1px); }
+.wrow .no { font: 600 34px/1 var(--f-display); color: var(--glacier); text-align: center; }
+.wrow.star .no { color: var(--alpen); }
 .wrow b { display: block; font-size: 17px; line-height: 1.3; }
 .wrow span.s { display: block; font-size: 15px; color: var(--ink-2); }
-.wrow .go-ic { font-weight: 800; }
+.wrow .ic { color: var(--ink-2); }
 
 /* TOP 10 */
 .routes { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
-.rc { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px; padding: 16px; text-align: left; }
-.rc:hover { background: var(--ice-soft); }
-.rc .badge { align-self: start; }
-.rc .h3 { display: block; margin: 0; font-size: 19px; font-weight: 800; line-height: 1.25; }
+.rc { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 14px; padding: 18px; text-align: left; transition: transform .2s; }
+.rc:hover { transform: translateY(-2px); }
+.rc .no { font: 600 44px/.9 var(--f-display); color: var(--glacier); }
+.rc.star .no { color: var(--alpen); }
+.rc .h3 { display: block; font-size: 19px; font-weight: 700; line-height: 1.25; }
 .rc .tg { font-size: 14px; color: var(--ink-2); margin-top: 2px; }
-.rc .mt { font-size: 14px; font-weight: 700; margin-top: 6px; }
-.rc .mo { font-size: 15px; margin-top: 6px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.chips span { padding: 3px 9px; border-radius: 999px; background: var(--soft); font-size: 13px; font-weight: 600; color: var(--ink-2); }
+.rc .mo { font-size: 15px; margin-top: 8px; }
+.rc .mo::before, .moment::before { content: "✦ "; color: var(--alpen); }
 
 /* WARUNKI */
 .cond { display: grid; gap: 18px; }
 @media (min-width: 900px) { .cond { grid-template-columns: 360px minmax(0, 1fr); align-items: start; } }
-.ctrl { padding: 18px; display: grid; gap: 16px; }
-.seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 6px; margin-top: 6px; }
-.seg button { padding: 11px 4px; border: 2px solid var(--ink); background: var(--paper); font-weight: 800; font-size: 16px; }
-.seg button[aria-pressed="true"] { background: var(--ink); color: #fff; }
-.seg.lv button[data-v="3"][aria-pressed="true"] { background: var(--gold); color: var(--ink); }
-.seg.lv button[data-v="4"][aria-pressed="true"] { background: var(--red); }
-.verdict { padding: 18px; }
-.verdict h3 { margin: 0 0 4px; font-size: 22px; }
+.ctrl { padding: 20px; display: grid; gap: 18px; }
+.seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 4px; margin-top: 8px; padding: 4px; border-radius: 14px; background: var(--soft); }
+.seg button { padding: 10px 4px; border: 0; border-radius: 10px; background: transparent; font-weight: 700; font-size: 15px; color: var(--ink-2); }
+.seg button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: 0 1px 3px rgba(16, 36, 58, .15); }
+.seg.lv button[data-v="3"][aria-pressed="true"] { background: var(--amber); color: #2A1C00; }
+.seg.lv button[data-v="4"][aria-pressed="true"] { background: var(--red); color: #fff; }
+.verdict { padding: 20px; }
+.verdict h3 { margin: 0 0 4px; font: 600 26px/1.15 var(--f-display); }
 .verdict > p { margin: 0; color: var(--ink-2); }
-.vl { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 6px; }
-.vl li { display: block; }
-.vbtn { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 10px; align-items: center; width: 100%; padding: 10px 12px; border: 0; border-left: 4px solid transparent; background: var(--snow); text-align: left; }
-.vbtn:hover { background: var(--ice-soft); border-left-color: var(--ink); }
-.vbtn .arr { font-weight: 800; color: var(--ink-2); }
-.today { margin: 12px 0 0; padding: 10px 12px; border-left: 4px solid var(--ink); font-size: 15px; }
-.today.t-best { background: var(--ink); color: #fff; border-left-color: var(--pink); }
-.today.t-ok { background: var(--ice-soft); color: #064B6E; }
-.today.t-partial { background: var(--gold-soft); color: #5A4100; border-left-color: var(--gold); }
-.today.t-no { background: var(--red-soft); color: #6B1418; border-left-color: var(--red); }
-.vl b { display: block; }
-.vl small { display: block; color: var(--ink-2); font-size: 14px; }
-.tag { font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 4px 8px; white-space: nowrap; }
-.t-best { background: var(--ink); color: #fff; } .t-ok { background: var(--ice-soft); color: #064B6E; } .t-partial { background: var(--gold-soft); color: #5A4100; } .t-no { background: #E9ECF6; color: #6A6F8F; }
-.vl li.v-no b { text-decoration: line-through; color: #6A6F8F; }
 .vhint { margin: 10px 0 0; font-size: 14px; color: var(--ink-2); }
+.vl { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 6px; }
+.vbtn { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 10px; align-items: center; width: 100%; padding: 11px 14px; border: 0; border-radius: 14px; background: var(--soft); text-align: left; transition: background .15s; }
+.vbtn:hover { background: var(--glacier-soft); }
+.vbtn b { display: block; }
+.vbtn small { display: block; color: var(--ink-2); font-size: 14px; }
+.vbtn .ic { color: var(--ink-2); width: 18px; height: 18px; }
+.tag { font-size: 12px; font-weight: 700; letter-spacing: .04em; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+.t-best { background: var(--glacier); color: #fff; } .t-ok { background: var(--glacier-soft); color: var(--glacier); } .t-partial { background: var(--amber-bg); color: var(--amber-ink); } .t-no { background: var(--red-soft); color: var(--red-ink); }
+.vl li.v-no b { text-decoration: line-through; color: var(--ink-2); }
+.today { margin: 14px 0 0; padding: 11px 14px; border-radius: 14px; font-size: 15px; }
 .lnks { display: flex; flex-wrap: wrap; gap: 8px; }
 
 /* PLECAK + SOS */
 .two { display: grid; gap: 18px; }
 @media (min-width: 900px) { .two { grid-template-columns: 1fr 1fr; align-items: start; } }
-.pack { padding: 18px; }
-.pack h3 { margin: 0; font-size: 19px; }
-.prog { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px; margin: 10px 0 8px; }
-.prog i { height: 10px; background: var(--line); }
-.prog i.on { background: var(--pink); }
-.ck { display: flex; align-items: center; gap: 12px; width: 100%; padding: 11px 4px; border: 0; border-top: 1px solid var(--line); background: transparent; text-align: left; font-size: 16px; }
-.ck .bx { flex: 0 0 22px; height: 22px; border: 2px solid var(--ink); display: grid; place-items: center; font-weight: 800; font-size: 14px; }
-.ck[aria-pressed="true"] .bx { background: var(--ink); color: #fff; }
+.pack { padding: 20px; }
+.pack h3 { margin: 0; font: 600 22px/1.2 var(--f-display); }
+.prog { height: 8px; border-radius: 999px; background: var(--soft); overflow: hidden; margin: 12px 0 6px; }
+.prog i { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--glacier), var(--alpen)); transition: width .3s; }
+.ck { display: flex; align-items: center; gap: 12px; width: 100%; padding: 11px 2px; border: 0; border-top: 1px solid var(--line); background: transparent; text-align: left; font-size: 16px; }
+.ck .bx { flex: 0 0 24px; height: 24px; border-radius: 50%; border: 2px solid var(--line); display: grid; place-items: center; color: #fff; }
+.ck .bx .ic { width: 14px; height: 14px; }
+.ck[aria-pressed="true"] .bx { background: var(--ok); border-color: var(--ok); }
 .ck[aria-pressed="true"] .nm { color: var(--ink-2); text-decoration: line-through; }
-.nums { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 180px), 1fr)); gap: 10px; margin-top: 10px; }
-.num { padding: 12px; background: var(--snow); border-left: 4px solid var(--red); }
+.nums { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 180px), 1fr)); gap: 10px; margin-top: 12px; }
+.num { padding: 12px 14px; border-radius: 16px; background: var(--soft); }
 .num .l { font-size: 13px; color: var(--ink-2); font-weight: 600; }
-.num .v { font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; user-select: all; }
-.num button { margin-top: 6px; border: 2px solid var(--ink); background: var(--paper); padding: 4px 10px; font-size: 13px; font-weight: 700; }
-.moms { display: grid; gap: 0; margin-top: 8px; }
-.mom { padding: 10px 0; border-top: 1px solid var(--line); }
+.num .v { font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--red); user-select: all; }
+.num button { margin-top: 6px; border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 4px 12px; font-size: 13px; font-weight: 600; }
+.moms { margin-top: 8px; }
+.mom { padding: 11px 0; border-top: 1px solid var(--line); }
 .mom b { display: block; }
 .mom span { color: var(--ink-2); font-size: 15px; }
 footer { max-width: 1180px; margin: 0 auto; padding: 36px 16px 30px; color: var(--ink-2); font-size: 14px; }
+#offline { color: var(--ok); font-weight: 600; }
 
 /* ARKUSZ TRASY */
-.sheet-wrap { position: fixed; inset: 0; z-index: 50; display: grid; align-items: end; justify-items: center; background: rgba(11, 11, 42, .55); }
+.sheet-wrap { position: fixed; inset: 0; z-index: 50; display: grid; align-items: end; justify-items: center; background: rgba(6, 14, 26, .5); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
 @media (min-width: 900px) { .sheet-wrap { align-items: center; padding: 24px; } }
-.sheet { width: min(760px, 100%); max-height: 92vh; overflow-y: auto; overscroll-behavior: contain; background: var(--paper); border: 2px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); padding: 20px 18px calc(24px + env(safe-area-inset-bottom, 0px)); }
+.sheet { width: min(760px, 100%); max-height: 92vh; overflow-y: auto; overscroll-behavior: contain; background: var(--card); border-radius: 26px 26px 0 0; box-shadow: 0 -10px 40px rgba(6, 14, 26, .3); padding: 22px 20px calc(24px + env(safe-area-inset-bottom, 0px)); animation: up .32s cubic-bezier(.2, .8, .2, 1); }
+@media (min-width: 900px) { .sheet { border-radius: 26px; padding-bottom: 26px; } }
+@keyframes up { from { transform: translateY(30px); opacity: 0; } }
 .sh-top { display: flex; justify-content: space-between; align-items: start; gap: 12px; }
-.sheet h2 { margin: 12px 0 4px; font-size: clamp(26px, 4vw, 34px); line-height: 1.1; }
+.sh-top .no { font: 600 52px/.9 var(--f-display); color: var(--glacier); }
+.sh-top .no.star { color: var(--alpen); }
+.sheet h2 { margin: 10px 0 4px; font: 600 clamp(28px, 4vw, 38px)/1.08 var(--f-display); letter-spacing: -.01em; }
 .sheet .why { color: var(--ink-2); margin: 10px 0 0; }
-.sheet .moment { margin: 10px 0 0; padding: 10px 12px; background: var(--pink-soft); border-left: 4px solid var(--pink); font-weight: 600; }
-.x { width: 44px; height: 44px; border: 2px solid var(--ink); background: var(--paper); font-size: 22px; font-weight: 800; line-height: 1; }
-@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
+.sheet .moment { margin: 12px 0 0; padding: 11px 14px; border-radius: 14px; background: var(--alpen-soft); font-weight: 600; }
+.sheet h3 { margin: 22px 0 0; font: 600 22px/1.2 var(--f-display); }
+.x { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line); background: var(--soft); display: grid; place-items: center; color: var(--ink); }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
 </head>
 <body>
 
-<header class="scene" id="top">
-  <canvas id="scene" aria-hidden="true"></canvas>
-  <div class="title">
-    <p class="px sub" data-px="Zima 2027 · 7 dni"></p>
-    <h1 class="px" data-px="Zakopane"></h1>
-    <a class="start" href="#dzien">▶ Plan dnia</a>
+<header class="hero" id="top">
+  <svg class="scape" id="scape" viewBox="0 0 1440 480" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <g id="l-far"><path id="p-far" style="fill:var(--m-far)"/><path id="p-far-hl" style="fill:var(--m-far-hl);opacity:.7"/></g>
+    <g id="l-mid">
+      <path style="fill:var(--m-mid)" d="M0 330 C80 318 140 300 210 302 C280 304 330 290 400 296 C450 300 480 314 520 318 L560 300 C580 290 600 282 615 286 L640 296 L668 250 L690 204 L712 170 L724 160 L740 170 L770 182 C800 190 840 196 880 206 L920 222 L950 240 L985 262 L1010 290 C1060 284 1120 270 1180 276 C1250 282 1320 296 1440 300 V480 H0 Z"/>
+      <path style="fill:var(--m-snow);opacity:.92" d="M668 250 L690 204 L712 170 L724 160 L740 170 L770 182 C790 187 805 190 820 193 L800 200 L782 196 L766 204 L748 194 L734 204 L720 196 L704 214 L690 228 Z"/>
+      <path style="fill:var(--m-snow);opacity:.75" d="M560 300 C580 290 600 282 615 286 L640 296 L626 300 L610 294 L594 302 L578 300 Z"/>
+      <path style="stroke:var(--m-snow);stroke-width:2.4;stroke-linecap:round;fill:none" d="M724 160 V140 M717 147 H731"/>
+    </g>
+    <g id="l-near"><path id="p-near" style="fill:var(--m-near)"/></g>
+    <g id="l-forest"><path id="p-forest" style="fill:var(--m-forest)"/></g>
+    <path id="p-ground" style="fill:var(--bg)"/>
+  </svg>
+  <canvas id="snow" aria-hidden="true"></canvas>
+  <div class="hero-in">
+    <div class="eyebrow">Tatry · zima 2027</div>
+    <h1>Zakopane</h1>
+    <p class="lead">Siedem dni w śniegu. Każdy dzień rozpisany godzina po godzinie.</p>
+    <div class="stats"><span class="stat"><b>4</b> dni na szlaku</span><span class="stat"><b>~45</b> km</span><span class="stat"><b>10</b> tras</span><span class="stat">zmrok <b>16:20</b></span></div>
+    <a class="cta" href="#dzien">Plan dnia <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
   </div>
 </header>
 
 <div class="daybar">
   <div class="daybar-in">
-    <a class="px logo" href="#top" data-px="Zak·27" aria-label="Na górę"></a>
+    <a class="brand" href="#top" aria-label="Na górę">Zakopane</a>
     <div class="days" id="days" role="group" aria-label="Wybierz dzień"></div>
     <nav class="topnav" aria-label="Sekcje"><a href="#trasy">TOP 10</a><a href="#warunki">Warunki</a><a href="#plecak">Plecak</a><a href="#sos">SOS</a></nav>
   </div>
@@ -287,7 +331,7 @@ footer { max-width: 1180px; margin: 0 auto; padding: 36px 16px 30px; color: var(
       <div class="card day-main">
         <h3>Godzina po godzinie</h3>
         <div class="legend"><span class="l-dec"><i></i>punkt decyzji</span><span class="l-star"><i></i>najpiękniejsze miejsce</span><span class="l-no"><i></i>tu nie skręcaj</span></div>
-        <p class="hint">Dotknij kwadratu przy kroku, żeby oznaczyć go jako zrobiony. Godziny to plan na ubitym śniegu — przy lodzie albo wietrze zawracasz.</p>
+        <p class="hint">Dotknij kółka przy kroku, żeby oznaczyć go jako zrobiony. Godziny to plan na ubitym śniegu — przy lodzie albo wietrze zawracasz.</p>
         <ol class="tl" id="daytl" data-key=""></ol>
         <nav class="pager" id="pager" aria-label="Poprzedni i następny dzień"></nav>
       </div>
@@ -308,9 +352,9 @@ footer { max-width: 1180px; margin: 0 auto; padding: 36px 16px 30px; color: var(
     <div class="sec-h"><h2 id="h-war">Którą trasę dziś?</h2><p>Ustaw to, co mówi poranny komunikat. Stopień 1–2 nie jest automatyczną zgodą — zawsze przeczytaj cały komunikat.</p></div>
     <div class="cond">
       <div class="card ctrl">
-        <div><span class="eyebrow">Stopień lawinowy (TOPR)</span><div class="seg lv" id="lv" role="group" aria-label="Stopień lawinowy"><button type="button" data-v="1">1</button><button type="button" data-v="2">2</button><button type="button" data-v="3">3</button><button type="button" data-v="4">4–5</button></div></div>
-        <div><span class="eyebrow">Wiatr</span><div class="seg" id="wind" role="group" aria-label="Wiatr"><button type="button" data-v="0">Słaby</button><button type="button" data-v="1">Silny</button></div></div>
-        <div><span class="eyebrow">Powietrze</span><div class="seg" id="sky" role="group" aria-label="Powietrze"><button type="button" data-v="1">Przejrzyste</button><button type="button" data-v="0">Chmury</button></div></div>
+        <div><span class="label">Stopień lawinowy (TOPR)</span><div class="seg lv" id="lv" role="group" aria-label="Stopień lawinowy"><button type="button" data-v="1">1</button><button type="button" data-v="2">2</button><button type="button" data-v="3">3</button><button type="button" data-v="4">4–5</button></div></div>
+        <div><span class="label">Wiatr</span><div class="seg" id="wind" role="group" aria-label="Wiatr"><button type="button" data-v="0">Słaby</button><button type="button" data-v="1">Silny</button></div></div>
+        <div><span class="label">Powietrze</span><div class="seg" id="sky" role="group" aria-label="Powietrze"><button type="button" data-v="1">Przejrzyste</button><button type="button" data-v="0">Chmury</button></div></div>
         <div class="lnks" id="links"></div>
       </div>
       <div class="card verdict" id="verdict" aria-live="polite"></div>
@@ -320,8 +364,8 @@ footer { max-width: 1180px; margin: 0 auto; padding: 36px 16px 30px; color: var(
   <section class="sec" id="plecak" aria-labelledby="h-plecak">
     <div class="sec-h"><h2 id="h-plecak">Plecak</h2><p>Zaznaczenia zapisują się na tym urządzeniu.</p></div>
     <div class="two">
-      <div class="card pack"><h3>Codziennie w plecaku</h3><div class="prog" id="gearbar"></div><div id="gear"></div></div>
-      <div class="card pack"><h3>Przed wyjazdem</h3><div class="prog" id="todobar"></div><div id="todo"></div></div>
+      <div class="card pack"><h3>Codziennie w plecaku</h3><div class="prog"><i id="gearbar"></i></div><div id="gear"></div></div>
+      <div class="card pack"><h3>Przed wyjazdem</h3><div class="prog"><i id="todobar"></i></div><div id="todo"></div></div>
     </div>
   </section>
 
@@ -340,58 +384,6 @@ footer { max-width: 1180px; margin: 0 auto; padding: 36px 16px 30px; color: var(
 <div class="sheet-wrap" id="sheetwrap" hidden><div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sh-title"></div></div>
 
 <script>
-/* ===================== PIKSELOWA CZCIONKA + SPRITE'Y ===================== */
-(function () {
-  var G = {
-    "A": ".###.|#...#|#...#|#####|#...#|#...#|#...#", "B": "####.|#...#|#...#|####.|#...#|#...#|####.", "C": ".###.|#...#|#....|#....|#....|#...#|.###.",
-    "D": "####.|#...#|#...#|#...#|#...#|#...#|####.", "E": "#####|#....|#....|####.|#....|#....|#####", "F": "#####|#....|#....|####.|#....|#....|#....",
-    "G": ".###.|#...#|#....|#.###|#...#|#...#|.####", "H": "#...#|#...#|#...#|#####|#...#|#...#|#...#", "I": "###|.#.|.#.|.#.|.#.|.#.|###",
-    "J": "..###|...#.|...#.|...#.|#..#.|#..#.|.##..", "K": "#...#|#..#.|#.#..|##...|#.#..|#..#.|#...#", "L": "#....|#....|#....|#....|#....|#....|#####",
-    "M": "#...#|##.##|#.#.#|#.#.#|#...#|#...#|#...#", "N": "#...#|#...#|##..#|#.#.#|#..##|#...#|#...#", "O": ".###.|#...#|#...#|#...#|#...#|#...#|.###.",
-    "P": "####.|#...#|#...#|####.|#....|#....|#....", "R": "####.|#...#|#...#|####.|#.#..|#..#.|#...#", "S": ".####|#....|#....|.###.|....#|....#|####.",
-    "T": "#####|..#..|..#..|..#..|..#..|..#..|..#..", "U": "#...#|#...#|#...#|#...#|#...#|#...#|.###.", "W": "#...#|#...#|#...#|#.#.#|#.#.#|#.#.#|.#.#.",
-    "Y": "#...#|#...#|.#.#.|..#..|..#..|..#..|..#..", "Z": "#####|....#|...#.|..#..|.#...|#....|#####", "Ł": ".#...|.#...|.##..|##...|.#...|.#...|.####",
-    "0": ".###.|#...#|#..##|#.#.#|##..#|#...#|.###.", "1": "..#..|.##..|..#..|..#..|..#..|..#..|.###.", "2": ".###.|#...#|....#|...#.|..#..|.#...|#####",
-    "3": "####.|....#|....#|.###.|....#|....#|####.", "4": "...#.|..##.|.#.#.|#..#.|#####|...#.|...#.", "5": "#####|#....|####.|....#|....#|#...#|.###.",
-    "6": ".###.|#....|#....|####.|#...#|#...#|.###.", "7": "#####|....#|...#.|..#..|.#...|.#...|.#...", "8": ".###.|#...#|#...#|.###.|#...#|#...#|.###.",
-    "9": ".###.|#...#|#...#|.####|....#|....#|.###.", " ": "...|...|...|...|...|...|...", "·": "..|..|..|##|##|..|..", "-": "....|....|....|####|....|....|....",
-    "★": "...#...|...#...|#######|.#####.|..###..|.##.##.|#.....#", "?": ".###.|#...#|....#|...#.|..#..|.....|..#.."
-  };
-  var ACC = { "Ą": ["A", "og"], "Ć": ["C", "ac"], "Ę": ["E", "og"], "Ń": ["N", "ac"], "Ó": ["O", "ac"], "Ś": ["S", "ac"], "Ź": ["Z", "ac"], "Ż": ["Z", "dot"] };
-  var MARK = { ac: [[3, 0], [2, 1]], dot: [[2, 1]], og: [[3, 9], [4, 9]] };
-  function glyph(ch) {
-    var base = ch, mark = null; if (ACC[ch]) { base = ACC[ch][0]; mark = ACC[ch][1]; }
-    var rows = (G[base] || G["?"]).split("|"), px = [];
-    rows.forEach(function (r, y) { for (var x = 0; x < r.length; x++) if (r[x] === "#") px.push([x, y + 2]); });
-    if (mark) MARK[mark].forEach(function (p) { px.push(p); });
-    return { w: rows[0].length, px: px };
-  }
-  function svgWord(word) {
-    var x = 0, d = "", chars = Array.from(word.toUpperCase());
-    chars.forEach(function (ch, i) { var g = glyph(ch); g.px.forEach(function (p) { d += "M" + (x + p[0]) + " " + p[1] + "h1v1h-1z"; }); x += g.w + (i < chars.length - 1 ? 1 : 0); });
-    return '<svg class="pxw" aria-hidden="true" viewBox="0 0 ' + x + ' 10" style="width:calc(var(--pxu,3px)*' + x + ');height:calc(var(--pxu,3px)*10)" shape-rendering="crispEdges"><path style="fill:currentColor" d="' + d + '"/></svg>';
-  }
-  function apply(root) {
-    (root || document).querySelectorAll("[data-px]").forEach(function (el) {
-      if (el.dataset.pxDone) return;
-      var text = el.getAttribute("data-px");
-      el.innerHTML = '<span class="px-sr">' + text + "</span>" + text.split(/\s+/).map(svgWord).join("");
-      el.dataset.pxDone = "1";
-    });
-  }
-  function sprite(rows, pal) {
-    rows = rows.split("|"); var paths = {};
-    rows.forEach(function (r, y) { for (var x = 0; x < r.length; x++) { var c = r[x]; if (pal[c]) paths[c] = (paths[c] || "") + "M" + x + " " + y + "h1v1h-1z"; } });
-    var out = '<svg class="spr" aria-hidden="true" viewBox="0 0 ' + rows[0].length + " " + rows.length + '" shape-rendering="crispEdges">';
-    Object.keys(paths).forEach(function (c) { out += '<path style="fill:' + pal[c] + '" d="' + paths[c] + '"/>'; });
-    return out + "</svg>";
-  }
-  function drawSprite(ctx, rows, pal, x, y) {
-    rows.split("|").forEach(function (r, yy) { for (var xx = 0; xx < r.length; xx++) { var c = r[xx]; if (pal[c]) { ctx.fillStyle = pal[c]; ctx.fillRect(x + xx, y + yy, 1, 1); } } });
-  }
-  window.PX = { apply: apply, sprite: sprite, drawSprite: drawSprite };
-})();
-
 /* ===================== DANE WYJAZDU ===================== */
 /* go: [[kolor, kierunek na drogowskazie]] · kolory: r czerwony, b niebieski, g zielony, y żółty, k czarny
    k (rodzaj kroku): car dojazd · start · walk · dec punkt decyzji · star najpiękniej · food · spa · end · info */
@@ -629,124 +621,131 @@ TRIP.store = {
   set: function (k, v) { try { localStorage.setItem("zak27:" + k, JSON.stringify(v)); } catch (e) {} }
 };
 
+
 /* ===================== APLIKACJA ===================== */
 (function () {
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var T = TRIP, reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var P = { k: "#0B0B2A", w: "#F5F8FF", i: "#7DE2FF", p: "#FF4FA3", g: "#FFD23F", r: "#FF5D5D", n: "#1E7F6A", s: "#8A8FB8", b: "#2A2370", y: "#FFC9A3", d: "#5B6BD6", o: "#16143A" };
-  var S = {
-    hiker1: "...pp...|..pppp..|...yy...|..iiii.s|.iiiiiys|.y.ii..s|...ii..s|..b..b.s|..b..b.s|.kk..kk.",
-    hiker2: "...pp...|..pppp..|...yy...|..iiii.s|.iiiiiys|.y.ii..s|...ii..s|...bb..s|..b..b.s|.kk...kk",
-    pine: "...nn...|..nnnn..|...nn...|..nnnn..|.nnwnnn.|..nnnn..|.nnnnnn.|nnnwnnnn|...ss...|...ss...",
-    car: "........|..pppp..|.pwwwwp.|pppppppp|pppppppp|.oo..oo.|........",
-    start: "opp...|oppp..|opppp.|opp...|o.....|o.....|o.....|o.....",
-    end: "owow..|oowow.|owowo.|oowo..|o.....|o.....|o.....|o.....",
-    walk: "...pp...|..pppp..|...yy...|..dddd.s|.ddddd.s|...dd..s|..d..d.s|.oo..oo.",
-    dec: "...g...|..gog..|.ggogg.|gggoggg|.ggggg.|..gog..|...g...",
-    star: "...p...|...p...|ppppppp|.ppppp.|..ppp..|.pp.pp.|p.....p",
-    food: "........|.d..d...|..d..d..|pppppp..|pppppp.p|pppppppp|.pppp...|........",
-    spa: "........|.d..d...|..d..d..|.d..d...|........|dddddddd|dwwddwwd|dddddddd",
-    info: ".dd.|.dd.|....|ddd.|.dd.|.dd.|.dd.|dddd",
-    day: "........|.oooooo.|.o....o.|.oooooo.|.o.o.o..|.o.o.o..|.oooooo.|........",
-    mapI: "...o....|..ooo...|.ooooo..|oo.oooo.|ooooooo.|oooooooo|........",
-    flake: "...o...|.o.o.o.|..ooo..|ooooooo|..ooo..|.o.o.o.|...o...",
-    pack: "..ooo...|.o...o..|.ooooo..|.o...o..|.o.o.o..|.o...o..|.ooooo..|........",
-    sos: "........|..o.o...|.ooooo..|.ooooo..|..ooo...|...o....|........"
+  var ICONS = {
+    car: '<path d="M3 13l2-5.5h14L21 13v4H3z"/><circle cx="7.5" cy="17" r="1.6"/><circle cx="16.5" cy="17" r="1.6"/><path d="M3 13h18"/>',
+    start: '<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',
+    end: '<path d="M5 21V4"/><path d="M5 4h14v9H5z"/><path d="M9.7 4v9M14.3 4v9M5 8.5h14"/>',
+    walk: '<circle cx="13" cy="4.5" r="2"/><path d="M10 21l2.5-6.5L10 11l1.5-4 3.5 3.5 3 1M8.5 9.5L7 14M12.5 14.5L15 21"/>',
+    dec: '<path d="M12 3l9 9-9 9-9-9z"/><path d="M12 8v5M12 16.2v.3"/>',
+    star: '<path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.8l-5.2 2.8 1-5.8-4.3-4.1 5.9-.8z"/>',
+    food: '<path d="M4 9h12v4.5A5.5 5.5 0 0 1 10.5 19h-1A5.5 5.5 0 0 1 4 13.5zM16 10.5h1.5a2.5 2.5 0 0 1 0 5H16M8 3c0 1.6 1.6 1.6 1.6 3.2M12 3c0 1.6 1.6 1.6 1.6 3.2"/>',
+    spa: '<path d="M3 15c2-1.8 4-1.8 6 0s4 1.8 6 0 4-1.8 6 0M3 19.5c2-1.8 4-1.8 6 0s4 1.8 6 0 4-1.8 6 0M9 11c0-2.5 3-2.5 3-5M14 11c0-2.5 3-2.5 3-5"/>',
+    info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.4"/>',
+    day: '<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
+    route: '<path d="M3 20l6.5-11 4 6.5 2.5-3.5L21 20z"/><path d="M8 11.5l1.5 1.5 1.5-1.5"/>',
+    flake: '<path d="M12 2.5v19M3.8 7.2l16.4 9.6M3.8 16.8L20.2 7.2M9 4.5l3 2 3-2M9 19.5l3-2 3 2"/>',
+    pack: '<path d="M6 9a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v11.5H6z"/><path d="M9.5 5V3.5h5V5M6 13.5h12M10 13.5v3h4v-3"/>',
+    sos: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.8"/><path d="M5.6 5.6l3.7 3.7M14.7 14.7l3.7 3.7M18.4 5.6l-3.7 3.7M9.3 14.7l-3.7 3.7"/>',
+    check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+    arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+    close: '<path d="M6 6l12 12M18 6L6 18"/>'
   };
-  var KS = { car: "car", start: "start", walk: "walk", dec: "dec", star: "star", food: "food", spa: "spa", end: "end", info: "info" };
+  function ico(n, sw) { return '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' + (sw || 1.8) + '" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (ICONS[n] || ICONS.info) + "</svg>"; }
   var TRAIL = { r: "czerwony", b: "niebieski", g: "zielony", y: "żółty", k: "czarny" };
+  var TAGN = { best: "Polecana", ok: "Możliwa", partial: "Częściowo", no: "Nie dziś" };
 
-  /* ---------- SCENA 8-BIT ---------- */
-  var cv = $("#scene"), ctx = cv.getContext("2d"), w = 0, h = 0, maps = [], snow = [], stars = [], last = 0, running = true, looping = false, tick = 0;
+  /* ---------- HERO: góry, świerki, śnieg, paralaksa ---------- */
   function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
-  function heightmap(seed, n, rough) {
-    var r = rng(seed), a = new Array(n + 1).fill(0), step = n, amp = 1; a[0] = a[n] = r() * .4;
-    while (step > 1) { var half = step >> 1; for (var i = half; i < n; i += step) a[i] = (a[i - half] + a[i + half]) / 2 + (r() - .5) * amp; amp *= rough; step = half; }
-    var mn = Math.min.apply(null, a), mx = Math.max.apply(null, a); return a.map(function (v) { return (v - mn) / (mx - mn || 1); });
+  (function buildScape() {
+    var r = rng(21), d = "M0 480 L0 250", hl = "", x = 0;
+    while (x < 1440) { // Tatry Wysokie w tle: ostre szczyty
+      var peakX = x + 30 + r() * 40, peakY = 150 + r() * 80, valX = peakX + 25 + r() * 40, valY = peakY + 35 + r() * 45;
+      d += " L" + peakX.toFixed(0) + " " + peakY.toFixed(0) + " L" + valX.toFixed(0) + " " + valY.toFixed(0);
+      hl += "M" + peakX.toFixed(0) + " " + peakY.toFixed(0) + " L" + (peakX + 14 + r() * 10).toFixed(0) + " " + (peakY + 22).toFixed(0) + " L" + (peakX + 4).toFixed(0) + " " + (peakY + 18).toFixed(0) + " L" + (peakX - 8).toFixed(0) + " " + (peakY + 26).toFixed(0) + " Z ";
+      x = valX;
+    }
+    $("#p-far").setAttribute("d", d + " L1440 260 L1440 480 Z"); $("#p-far-hl").setAttribute("d", hl);
+    var n = "M0 480 L0 372", f = "", g = "M0 480 L0 446";
+    for (var xx = 0; xx <= 1440; xx += 40) n += " L" + xx + " " + (372 + Math.sin(xx / 130) * 16 + Math.sin(xx / 47) * 6).toFixed(1);
+    $("#p-near").setAttribute("d", n + " L1440 480 Z");
+    for (var tx = -10; tx < 1450; tx += 12 + r() * 16) { // świerki regli
+      var base = 438 + Math.sin(tx / 90) * 6, hgt = 22 + r() * 30, w = hgt * .42;
+      f += "M" + tx.toFixed(1) + " " + (base - hgt).toFixed(1) + " L" + (tx + w * .55).toFixed(1) + " " + (base - hgt * .55).toFixed(1) + " L" + (tx + w * .3).toFixed(1) + " " + (base - hgt * .55).toFixed(1) + " L" + (tx + w).toFixed(1) + " " + base.toFixed(1) + " L" + (tx - w).toFixed(1) + " " + base.toFixed(1) + " L" + (tx - w * .3).toFixed(1) + " " + (base - hgt * .55).toFixed(1) + " L" + (tx - w * .55).toFixed(1) + " " + (base - hgt * .55).toFixed(1) + " Z ";
+    }
+    f += "M0 480 L0 436 C360 446 720 430 1080 440 C1260 445 1380 438 1440 436 L1440 480 Z";
+    $("#p-forest").setAttribute("d", f);
+    for (var gx = 0; gx <= 1440; gx += 60) g += " L" + gx + " " + (452 + Math.sin(gx / 110) * 5).toFixed(1);
+    $("#p-ground").setAttribute("d", g + " L1440 480 Z");
+  })();
+  var cv = $("#snow"), ctx = cv.getContext("2d"), W = 0, H = 0, flakes = [], running = true, looping = false;
+  function sizeSnow() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2), rect = cv.getBoundingClientRect();
+    W = rect.width; H = rect.height; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var r = rng(5); flakes = [];
+    for (var i = 0; i < Math.round(W * H / 5200); i++) { var z = r(); flakes.push({ x: r() * W, y: r() * H, r: .8 + z * 2.6, v: .25 + z * .9, a: .35 + z * .6, p: r() * 6.28 }); }
   }
-  function sizeScene() {
-    var rect = cv.getBoundingClientRect(), u = rect.width < 600 ? 3 : 4;
-    w = Math.max(1, Math.ceil(rect.width / u)); h = Math.max(1, Math.ceil(rect.height / u)); cv.width = w; cv.height = h;
-    maps = [heightmap(5, 512, .55), heightmap(9, 512, .6), heightmap(13, 512, .62)];
-    var r = rng(3); stars = []; for (var i = 0; i < w * h / 140; i++) stars.push([Math.floor(r() * w), Math.floor(r() * h * .5), r()]);
-    snow = []; for (var j = 0; j < w * h / 90; j++) snow.push([r() * w, r() * h, .2 + r() * .5]);
-  }
-  function band(y0, y1, c1, c2) { ctx.fillStyle = c1; ctx.fillRect(0, y0, w, y1 - y0); ctx.fillStyle = c2; for (var x = 0; x < w; x += 2) { ctx.fillRect(x + ((y1 - 1) % 2), y1 - 1, 1, 1); ctx.fillRect(x + (y1 % 2), y1 - 2, 1, 1); } }
-  function draw() {
-    tick++;
-    var hz = Math.round(h * .62), cols = ["#0B0B2A", "#17123F", "#2A2370", "#4A2D8C", "#7A3E9D"], bh = Math.ceil(hz / cols.length);
-    for (var b = 0; b < cols.length; b++) band(b * bh, Math.min(hz + 2, (b + 1) * bh), cols[b], cols[Math.min(b + 1, cols.length - 1)]);
-    stars.forEach(function (s) { if ((tick + s[2] * 20 | 0) % 14) { ctx.fillStyle = s[2] > .8 ? "#FFD23F" : "#F5F8FF"; ctx.fillRect(s[0], s[1], 1, 1); } });
-    for (var x = 0; x < w; x++) { var yA = Math.round(h * .16 + Math.sin(x * .05 + tick * .05) * 5 + Math.sin(x * .013) * 7); for (var k = 0; k < 6; k++) if ((x + k + tick) % 3 === 0) { ctx.fillStyle = k < 3 ? "#7DE2FF" : "#FF4FA3"; ctx.fillRect(x, yA + k * 2, 1, 1); } }
-    var mx = Math.round(w * .82), my = Math.round(h * .2), R = 7;
-    for (var yy = -R; yy <= R; yy++) for (var xx = -R; xx <= R; xx++) if (xx * xx + yy * yy <= R * R) { ctx.fillStyle = (xx * xx + yy * yy > (R - 1) * (R - 1)) ? "#CFE3FF" : ((xx === 2 && yy === -2) || (xx === -3 && yy === 2) ? "#C9CFEA" : "#F5F8FF"); ctx.fillRect(mx + xx, my + yy, 1, 1); }
-    [{ m: maps[0], base: hz, amp: h * .42, sp: .15, c: "#3B3A8E", lc: "#4C4BA8", sn: "#CFE3FF" }, { m: maps[1], base: hz + 6, amp: h * .32, sp: .35, c: "#2A2370", lc: "#36308C", sn: "#F5F8FF" }, { m: maps[2], base: hz + 14, amp: h * .18, sp: .7, c: "#17123F", lc: "#211A55", sn: "#E4ECFF" }].forEach(function (L) {
-      var off = reduce ? 0 : tick * L.sp, top = Infinity, ys = [];
-      for (var x1 = 0; x1 < w; x1++) { var y = Math.round(L.base - L.m[Math.floor((x1 + off) * 1.5) % 512] * L.amp); ys.push(y); if (y < top) top = y; }
-      for (var x2 = 0; x2 < w; x2++) { var y2 = ys[x2]; ctx.fillStyle = (x2 > 0 && ys[x2 - 1] > y2) ? L.lc : L.c; ctx.fillRect(x2, y2, 1, h - y2); if (y2 < top + L.amp * .3) { ctx.fillStyle = L.sn; ctx.fillRect(x2, y2, 1, 2 + ((x2 * 7) % 3)); } }
+  function paint(t) {
+    ctx.clearRect(0, 0, W, H);
+    flakes.forEach(function (f) {
+      if (!reduce) { f.y += f.v; f.x += Math.sin(t / 1600 + f.p) * .35; if (f.y > H + 4) { f.y = -4; f.x = Math.random() * W; } }
+      ctx.globalAlpha = f.a; ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, 6.283); ctx.fill();
     });
-    var ground = h - Math.round(h * .16), poff = reduce ? 0 : (tick * 1.2) % 14;
-    for (var p0 = -14; p0 < w + 14; p0 += 14) PX.drawSprite(ctx, S.pine, P, Math.round(p0 - poff), ground - 9);
-    ctx.fillStyle = "#EDF2FF"; ctx.fillRect(0, ground, w, h - ground);
-    ctx.fillStyle = "#CBD7FF"; for (var gx = 0; gx < w; gx += 2) for (var gy = ground + 2; gy < h - 2; gy += 4) ctx.fillRect(gx + ((gy / 4 | 0) % 2), gy, 1, 1);
-    var hx = Math.round(w * .28); ctx.fillStyle = "#CBD7FF"; ctx.fillRect(hx, ground + 1, 8, 1);
-    PX.drawSprite(ctx, (tick >> 2) % 2 ? S.hiker2 : S.hiker1, P, hx, ground - 9);
-    ctx.fillStyle = "#F5F8FF";
-    snow.forEach(function (f) { if (!reduce) { f[1] += f[2]; f[0] += Math.sin((f[1] + tick) * .05) * .3 - .15; if (f[1] > h) { f[1] = -1; f[0] = Math.random() * w; } } ctx.fillRect(Math.round(f[0]), Math.round(f[1]), 1, 1); });
+    ctx.globalAlpha = 1;
   }
-  function loop(now) { if (!running || reduce) { looping = false; return; } requestAnimationFrame(loop); if (now - last < 60) return; last = now; draw(); }
-  function start() { if (reduce) { draw(); return; } if (!looping) { looping = true; requestAnimationFrame(loop); } }
-  sizeScene(); draw(); start();
-  window.addEventListener("resize", function () { sizeScene(); draw(); });
+  function loop(t) { if (!running || reduce) { looping = false; return; } paint(t); requestAnimationFrame(loop); }
+  function start() { if (reduce) { paint(0); return; } if (!looping) { looping = true; requestAnimationFrame(loop); } }
+  sizeSnow(); paint(0); start();
+  window.addEventListener("resize", function () { sizeSnow(); paint(0); });
   if ("IntersectionObserver" in window) new IntersectionObserver(function (e) { running = e[0].isIntersecting && !document.hidden; if (running) start(); }).observe(cv);
   document.addEventListener("visibilitychange", function () { running = !document.hidden; if (running) start(); });
+  if (!reduce) {
+    var layers = [["#l-far", .35], ["#l-mid", .22], ["#l-near", .12], ["#l-forest", .06]].map(function (l) { return [$(l[0]), l[1]]; }), ticking = false;
+    window.addEventListener("scroll", function () {
+      if (ticking) return; ticking = true;
+      requestAnimationFrame(function () { var y = Math.min(window.scrollY, 600); layers.forEach(function (l) { l[0].style.transform = "translateY(" + (y * l[1]).toFixed(1) + "px)"; }); ticking = false; });
+    }, { passive: true });
+  }
 
   /* ---------- KROKI ---------- */
   function goHTML(go) {
     var cols = go.map(function (g) { return g[0]; }), target = go.map(function (g) { return g[1]; }).filter(Boolean).join(" · ");
-    return '<div class="go"><span class="lbl">Idź</span>' + cols.map(function (c) { return '<span class="tr tr-' + c + '"><i></i>' + TRAIL[c] + "</span>"; }).join("") + (target ? '<span class="arr">→</span><b>' + target + "</b>" : "") + "</div>";
+    return '<div class="go"><span class="lbl">Idź</span>' + cols.map(function (c) { return '<span class="blaze b-' + c + '"><i></i>' + TRAIL[c] + "</span>"; }).join("") + (target ? '<span class="arr">→</span><b>' + target + "</b>" : "") + "</div>";
   }
   function stepHTML(s, i, done) {
     return '<li class="st k-' + s.k + (done[i] ? " is-done" : "") + '"><div class="tm">' + s.t + '</div>' +
-      '<button type="button" class="mk" data-i="' + i + '" aria-pressed="' + !!done[i] + '" aria-label="Oznacz jako zrobione: ' + s.p + '">' + PX.sprite(S[KS[s.k]] || S.info, P) + "</button>" +
+      '<button type="button" class="mk" data-i="' + i + '" aria-pressed="' + !!done[i] + '" aria-label="Oznacz jako zrobione: ' + s.p + '">' + ico(done[i] ? "check" : s.k, done[i] ? 2.4 : 1.8) + "</button>" +
       '<div class="bd"><span class="tm-m">' + s.t + "</span><h4>" + s.p + (s.km ? '<span class="km">' + s.km + " km</span>" : "") + "</h4>" +
       (s.d ? "<p>" + s.d + "</p>" : "") + (s.go ? goHTML(s.go) : "") +
       (s.no ? '<p class="no"><b>Nie idź:</b> ' + s.no + "</p>" : "") + (s.decision ? '<p class="dec"><b>Punkt decyzji:</b> ' + s.decision + "</p>" : "") + "</div></li>";
   }
   function renderSteps(ol, key, steps) {
     var done = T.store.get("done-" + key, {});
-    ol.dataset.key = key; ol.innerHTML = steps.map(function (s, i) { return stepHTML(s, i, done); }).join("");
+    ol.dataset.key = key; ol._steps = steps; ol.innerHTML = steps.map(function (s, i) { return stepHTML(s, i, done); }).join("");
   }
   document.addEventListener("click", function (e) {
     var b = e.target.closest(".mk"); if (!b) return;
     var ol = b.closest("ol"), key = "done-" + ol.dataset.key, done = T.store.get(key, {}), i = b.dataset.i;
     done[i] = !done[i]; T.store.set(key, done);
-    b.setAttribute("aria-pressed", String(!!done[i])); b.closest(".st").classList.toggle("is-done", !!done[i]);
+    var s = ol._steps[i]; b.setAttribute("aria-pressed", String(!!done[i])); b.innerHTML = ico(done[i] ? "check" : s.k, done[i] ? 2.4 : 1.8);
+    b.closest(".st").classList.toggle("is-done", !!done[i]);
   });
   function factsHTML(rows) { return '<dl class="facts">' + rows.map(function (f) { return '<div class="' + (f[2] ? "wide turn" : (f[3] || "")) + '"><dt>' + f[0] + "</dt><dd>" + f[1] + "</dd></div>"; }).join("") + "</dl>"; }
   function routeFacts(r) { return [["Start", r.start], ["Meta", r.end], ["Dystans", r.km + " km"], ["Podejścia", r.up], ["Czas marszu", r.time, false, "wide"], ["Zawróć najpóźniej", r.turn, true], ["Warunki", r.cond, false, "wide"]]; }
 
   /* ---------- DZIEŃ ---------- */
   var cur = T.store.get("day", 1);
-  $("#days").innerHTML = T.days.map(function (d) { return '<button type="button" class="dchip' + (d.star ? " star" : "") + '" data-n="' + d.n + '" aria-pressed="false"><span class="n"><span class="px" data-px="' + d.n + '"></span></span>' + d.short + "</button>"; }).join("");
+  $("#days").innerHTML = T.days.map(function (d) { return '<button type="button" class="dchip' + (d.star ? " star" : "") + '" data-n="' + d.n + '" aria-pressed="false"><span class="n">' + d.n + "</span>" + d.short + "</button>"; }).join("");
   function renderDay(n, scroll) {
     cur = n; T.store.set("day", n);
-    document.querySelectorAll(".dchip").forEach(function (c) { var on = +c.dataset.n === n; c.setAttribute("aria-pressed", String(on)); if (on && c.scrollIntoView) c.scrollIntoView({ inline: "center", block: "nearest", behavior: reduce ? "auto" : "smooth" }); });
+    document.querySelectorAll(".dchip").forEach(function (c) { var on = +c.dataset.n === n; c.setAttribute("aria-pressed", String(on)); if (on && scroll && c.scrollIntoView) c.scrollIntoView({ inline: "center", block: "nearest", behavior: reduce ? "auto" : "smooth" }); });
     var d = T.days[n - 1], r = d.route ? T.route(d.route) : null;
-    var side = '<span class="badge' + (d.star ? " star" : "") + '"><span class="px" data-px="Dzień ' + d.n + (d.star ? " ★" : "") + '"></span></span><h2>' + d.title + '</h2><p class="sum">' + d.summary + "</p>" +
+    var side = '<div class="dnum' + (d.star ? " star" : "") + '"><b>' + d.n + "</b><span>dzień" + (d.star ? " · wielka trasa" : "") + "</span></div><h2>" + d.title + '</h2><p class="sum">' + d.summary + "</p>" +
       factsHTML(r ? routeFacts(r) : d.facts) +
-      (r ? '<div class="side-acts"><button type="button" class="btn" data-open="' + r.id + '">Opis trasy nr ' + r.rank + "</button></div>" : "");
+      (r ? '<div class="side-acts"><button type="button" class="btn" data-open="' + r.id + '">Opis trasy nr ' + r.rank + " " + ico("arrow") + "</button></div>" : "");
     if (d.alts && d.alts.length) {
       side += '<div class="planb"><h3>' + (r ? "Plan B — gdy warunki są gorsze" : "Zamiast tego dnia") + "</h3>" + (d.altNote ? '<p class="sum" style="font-size:15px">' + d.altNote + "</p>" : "") +
         d.alts.map(function (id) { var a = T.route(id); return '<details><summary><span>nr ' + a.rank + " · " + a.name + "<small>" + a.km + " km · " + a.time + " · start " + a.start + '</small></span></summary><div class="inner"><p class="sum" style="font-size:15px">' + a.why + '</p><ol class="tl" data-plan="' + id + '"></ol></div></details>'; }).join("") + "</div>";
     }
     $("#dayside").innerHTML = side;
     $("#dayside").querySelectorAll("ol[data-plan]").forEach(function (ol) { renderSteps(ol, "r-" + ol.dataset.plan, T.route(ol.dataset.plan).steps); });
-    var steps = [].concat(d.pre || [], r ? r.steps : [], d.post || [], d.steps || []);
-    renderSteps($("#daytl"), "d" + n, steps);
+    renderSteps($("#daytl"), "d" + n, [].concat(d.pre || [], r ? r.steps : [], d.post || [], d.steps || []));
     var prev = T.days[n - 2], next = T.days[n];
     $("#pager").innerHTML = (prev ? '<button type="button" class="btn" data-day="' + prev.n + '">← Dzień ' + prev.n + ": " + prev.short + "</button>" : "<span></span>") + (next ? '<button type="button" class="btn primary" data-day="' + next.n + '">Dzień ' + next.n + ": " + next.short + " →</button>" : "<span></span>");
-    PX.apply(document);
     if (scroll) document.getElementById("dzien").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
   }
   document.addEventListener("click", function (e) {
@@ -757,26 +756,25 @@ TRIP.store = {
   /* ---------- TYDZIEŃ ---------- */
   $("#week").innerHTML = T.days.map(function (d) {
     var r = d.route ? T.route(d.route) : null;
-    return '<button type="button" class="card wrow" data-day="' + d.n + '"><span class="badge' + (d.star ? " star" : "") + '"><span class="px" data-px="' + d.n + '"></span></span><span><b>' + d.title + '</b><span class="s">' + (r ? "Start " + r.start + " · " + r.km + " km · " + r.time : d.summary) + '</span></span><span class="go-ic" aria-hidden="true">→</span></button>';
+    return '<button type="button" class="card wrow' + (d.star ? " star" : "") + '" data-day="' + d.n + '"><span class="no">' + d.n + "</span><span><b>" + d.title + '</b><span class="s">' + (r ? "Start " + r.start + " · " + r.km + " km · " + r.time : d.summary) + "</span></span>" + ico("arrow") + "</button>";
   }).join("");
 
   /* ---------- TOP 10 ---------- */
   $("#routes").innerHTML = T.routes.map(function (r) {
-    return '<button type="button" class="card rc" data-open="' + r.id + '"><span class="badge' + (r.star ? " star" : "") + '"><span class="px" data-px="' + r.rank + '"></span></span><span><strong class="h3">' + r.name + '</strong><div class="tg">' + r.tag + '</div><div class="mt">' + r.km + " km · ↑ " + r.up + " · " + r.time + '</div><div class="mo">' + r.moment + "</div></span></button>";
+    return '<button type="button" class="card rc' + (r.star ? " star" : "") + '" data-open="' + r.id + '"><span class="no">' + r.rank + '</span><span><strong class="h3">' + r.name + '</strong><div class="tg">' + r.tag + '</div><div class="chips"><span>' + r.km + " km</span><span>↑ " + r.up + "</span><span>" + r.time + '</span></div><div class="mo">' + r.moment + "</div></span></button>";
   }).join("");
 
   /* ---------- ARKUSZ TRASY ---------- */
   var wrap = $("#sheetwrap"), sheet = $("#sheet"), lastF = null;
-  var TAGN = { best: "Polecana", ok: "Możliwa", partial: "Częściowo", no: "Nie dziś" };
   function openRoute(id, fromCond) {
     var r = T.route(id); if (!r) return; lastF = document.activeElement;
     var today = "";
     if (fromCond) { var a = T.assess(cond.level, !!cond.wind, !!cond.clear), st = a.st[id]; today = '<p class="today t-' + st.s + '">Przy ustawionych warunkach (stopień ' + (cond.level >= 4 ? "4–5" : cond.level) + ", wiatr " + (cond.wind ? "silny" : "słaby") + ", " + (cond.clear ? "przejrzyście" : "chmury") + "): <b>" + TAGN[st.s] + "</b> — " + st.why + ".</p>"; }
-    sheet.innerHTML = '<div class="sh-top"><span class="badge' + (r.star ? " star" : "") + '"><span class="px" data-px="Trasa ' + r.rank + '"></span></span><button type="button" class="x" id="sh-x" aria-label="Zamknij">×</button></div>' +
-      '<h2 id="sh-title">' + r.name + '</h2><div class="eyebrow">' + r.tag + "</div>" + today + factsHTML(routeFacts(r)) +
-      '<p class="moment">' + r.moment + '</p><p class="why">' + r.why + "</p><p class=\"why\"><b>Dojazd:</b> " + r.access + '</p><h3 style="margin:20px 0 0">Krok po kroku</h3><ol class="tl" id="sheet-tl"></ol>';
+    sheet.innerHTML = '<div class="sh-top"><span class="no' + (r.star ? " star" : "") + '">' + r.rank + '</span><button type="button" class="x" id="sh-x" aria-label="Zamknij">' + ico("close", 2.2) + "</button></div>" +
+      '<h2 id="sh-title">' + r.name + '</h2><div class="label">' + r.tag + "</div>" + today + factsHTML(routeFacts(r)) +
+      '<p class="moment">' + r.moment + '</p><p class="why">' + r.why + '</p><p class="why"><b>Dojazd:</b> ' + r.access + '</p><h3>Krok po kroku</h3><ol class="tl" id="sheet-tl"></ol>';
     renderSteps($("#sheet-tl"), "r-" + r.id, r.steps);
-    PX.apply(sheet); wrap.hidden = false; sheet.scrollTop = 0; $("#sh-x").focus();
+    wrap.hidden = false; sheet.scrollTop = 0; $("#sh-x").focus();
   }
   function closeRoute() { wrap.hidden = true; if (lastF) lastF.focus(); }
   document.addEventListener("click", function (e) { var o = e.target.closest("[data-open]"); if (o) openRoute(o.dataset.open, !!o.dataset.cond); if (e.target.closest("#sh-x") || e.target === wrap) closeRoute(); });
@@ -791,9 +789,9 @@ TRIP.store = {
     sync();
   }
   function verdict() {
-    var a = T.assess(cond.level, !!cond.wind, !!cond.clear), order = { best: 0, ok: 1, partial: 2, no: 3 }, tag = { best: "Polecana", ok: "Możliwa", partial: "Częściowo", no: "Nie dziś" };
+    var a = T.assess(cond.level, !!cond.wind, !!cond.clear), order = { best: 0, ok: 1, partial: 2, no: 3 };
     var rs = T.routes.slice().sort(function (x, y) { return order[a.st[x.id].s] - order[a.st[y.id].s] || x.rank - y.rank; });
-    $("#verdict").innerHTML = "<h3>" + a.h + "</h3><p>" + a.n + '</p><p class="vhint">Dotknij trasy, żeby zobaczyć jej dokładny opis krok po kroku.</p><ul class="vl">' + rs.map(function (r) { var s = a.st[r.id]; return '<li class="v-' + s.s + '"><button type="button" class="vbtn" data-open="' + r.id + '" data-cond="1"><span><b>' + r.rank + ". " + r.name + "</b><small>" + s.why + '</small></span><span class="tag t-' + s.s + '">' + tag[s.s] + '</span><span class="arr" aria-hidden="true">→</span></button></li>'; }).join("") + "</ul>";
+    $("#verdict").innerHTML = "<h3>" + a.h + "</h3><p>" + a.n + '</p><p class="vhint">Dotknij trasy, żeby zobaczyć jej dokładny opis krok po kroku.</p><ul class="vl">' + rs.map(function (r) { var s = a.st[r.id]; return '<li class="v-' + s.s + '"><button type="button" class="vbtn" data-open="' + r.id + '" data-cond="1"><span><b>' + r.rank + ". " + r.name + "</b><small>" + s.why + '</small></span><span class="tag t-' + s.s + '">' + TAGN[s.s] + "</span>" + ico("arrow") + "</button></li>"; }).join("") + "</ul>";
   }
   seg("#lv", "level"); seg("#wind", "wind"); seg("#sky", "clear"); verdict();
   $("#links").innerHTML = T.links.map(function (l) { return '<a class="btn" href="' + l[1] + '" target="_blank" rel="noopener">' + l[0] + " ↗</a>"; }).join("");
@@ -802,9 +800,9 @@ TRIP.store = {
   function checklist(key, items, box, bar) {
     var done = T.store.get(key, {});
     function draw() {
-      $(box).innerHTML = items.map(function (it) { return '<button type="button" class="ck" data-id="' + it[0] + '" aria-pressed="' + !!done[it[0]] + '"><span class="bx">' + (done[it[0]] ? "✓" : "") + '</span><span class="nm">' + it[1] + "</span></button>"; }).join("");
-      var c = items.filter(function (it) { return done[it[0]]; }).length, n = Math.round(c / items.length * 10);
-      $(bar).innerHTML = Array.from({ length: 10 }, function (_, i) { return '<i class="' + (i < n ? "on" : "") + '"></i>'; }).join(""); $(bar).setAttribute("aria-label", c + " z " + items.length);
+      $(box).innerHTML = items.map(function (it) { return '<button type="button" class="ck" data-id="' + it[0] + '" aria-pressed="' + !!done[it[0]] + '"><span class="bx">' + (done[it[0]] ? ico("check", 3) : "") + '</span><span class="nm">' + it[1] + "</span></button>"; }).join("");
+      var c = items.filter(function (it) { return done[it[0]]; }).length;
+      $(bar).style.width = (c / items.length * 100) + "%"; $(bar).parentNode.setAttribute("aria-label", c + " z " + items.length);
     }
     $(box).addEventListener("click", function (e) { var b = e.target.closest(".ck"); if (!b) return; done[b.dataset.id] = !done[b.dataset.id]; T.store.set(key, done); draw(); });
     draw();
@@ -820,15 +818,13 @@ TRIP.store = {
   });
 
   /* ---------- MENU NA TELEFONIE ---------- */
-  var tabs = [["dzien", "Dzień", "day"], ["trasy", "Trasy", "mapI"], ["warunki", "Warunki", "flake"], ["plecak", "Plecak", "pack"], ["sos", "SOS", "sos"]];
-  var PW = { o: "currentColor" };
-  $("#tabbar").innerHTML = tabs.map(function (t) { return '<a href="#' + t[0] + '"><span class="ic">' + PX.sprite(S[t[2]], PW) + "</span>" + t[1] + "</a>"; }).join("");
+  var tabs = [["dzien", "Dzień", "day"], ["trasy", "Trasy", "route"], ["warunki", "Warunki", "flake"], ["plecak", "Plecak", "pack"], ["sos", "SOS", "sos"]];
+  $("#tabbar").innerHTML = tabs.map(function (t) { return '<a href="#' + t[0] + '">' + ico(t[2]) + t[1] + "</a>"; }).join("");
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (es) { es.forEach(function (en) { if (en.isIntersecting) document.querySelectorAll(".tabbar a").forEach(function (a) { a.classList.toggle("on", a.getAttribute("href") === "#" + en.target.id); }); }); }, { rootMargin: "-40% 0px -55% 0px" });
     ["dzien", "tydzien", "trasy", "warunki", "plecak", "sos"].forEach(function (id) { io.observe(document.getElementById(id)); });
   }
 
-  PX.apply(document);
   renderDay(cur, false);
 
   /* ---------- TRYB OFFLINE (GitHub Pages) ---------- */
